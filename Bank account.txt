@@ -1,0 +1,57 @@
+import java.util.Scanner;                                                                                  
+interface BankAccount
+{
+void deposit(double amt);
+void withdraw(double amt);
+}
+class Bank implements BankAccount
+{
+double balance;
+Bank(double balance)
+{
+this.balance = balance;
+}
+public void deposit(double amt)
+{
+balance += amt;
+System.out.println("Balance: Rs. " + balance);
+System.out.println("Amount Deposited Successfully!");
+}
+public void withdraw(double amt)
+{
+if (amt > balance)
+throw new ArithmeticException("Insufficient Balance");
+balance -= amt;
+System.out.println("Balance: Rs." + balance);
+}
+}
+public class bankoperation
+{
+public static void main(String args[]){
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter Balance:");
+double bal = sc.nextDouble();
+Bank b = new Bank(bal);
+System.out.println("1.Deposit 2.Withdraw");
+int ch = sc.nextInt();
+System.out.println("Account holder name:");
+String s=sc.next();
+System.out.println("Account Number:");
+String sa=sc.next();
+try
+{
+System.out.print("Enter Amount:");
+double amt = sc.nextDouble();
+if (ch == 1)
+b.deposit(amt);
+else if (ch == 2)
+b.withdraw(amt);
+else
+System.out.println("Invalid Choice");
+}
+catch (Exception e)
+{
+System.out.println(e.getMessage());
+}
+}
+}
